@@ -29,4 +29,4 @@ x-casaos:
   port_map: "3333"
   scheme: "https"
   author: Iza
-  icon: https://github.com/Izanagi11/IzaServerAppstore/blob/main/Apps/OmniLogin/Google_Chrome_icon-icons.com_66794.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/OmniLogin/Google_Chrome_icon-icons.com_66794.png
