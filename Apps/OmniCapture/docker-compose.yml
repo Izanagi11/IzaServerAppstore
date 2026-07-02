@@ -9,7 +9,6 @@ services:
       - /media/WD7200_2/stash/_Unsorted_Junk:/app/server/data/downloads
     restart: unless-stopped
 
-# ZimaOS App Store UI Metadata
 x-casaos:
   architectures:
     - amd64
@@ -22,3 +21,5 @@ x-casaos:
   category: Media
   port_map: "8181"
   author: Iza
+  # Add any direct image link here so it looks good in the store!
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/img_for_casaos_app/icon/casaos.png
