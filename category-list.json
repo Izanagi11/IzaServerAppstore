@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Media",
+    "font": "casa-media",
+    "description": "Media and Video Applications"
+  },
+  {
+    "name": "Utilities",
+    "font": "casa-utilities",
+    "description": "System Utilities and Tools"
+  }
+]
