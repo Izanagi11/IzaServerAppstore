@@ -6,7 +6,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Denver
-      - CHROME_CLI=https://google.com
+      - CHROME_CLI=chrome://new-tab-page
     ports:
       - "3333:3001" 
     volumes:
@@ -20,7 +20,6 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  # FIXED: Added the hyphen to match the service name exactly
   main_app: omni-login 
   title:
     custom: OmniLogin
@@ -28,5 +27,6 @@ x-casaos:
     en_us: Chromium Login For OmniCapture
   category: Utilities
   port_map: "3333"
+  scheme: "https"
   author: Iza
-  icon: https://github.com/Izanagi11/IzaServerApps/blob/main/Apps/OmniLogin/Google_Chrome_icon-icons.com_66794.png
+  icon: https://github.com/Izanagi11/IzaServerAppstore/blob/main/Apps/OmniLogin/Google_Chrome_icon-icons.com_66794.png
