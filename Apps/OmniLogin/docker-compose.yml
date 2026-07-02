@@ -6,7 +6,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Denver
-      - CHROME_CLI=https://fansly.com/login
+      - CHROME_CLI=https://google.com
     ports:
       - "3333:3001" 
     volumes:
