@@ -1,0 +1,24 @@
+services:
+  omnicapture:
+    image: ghcr.io/izanagi11/omnicapture-server:latest
+    container_name: omnicapture
+    ports:
+      - "8181:8000"
+    volumes:
+      - /media/ZimaOS-HD/AppData/omnicapture/server/data:/app/server/data
+      - /media/WD7200_2/stash/_Unsorted_Junk:/app/server/data/downloads
+    restart: unless-stopped
+
+# ZimaOS App Store UI Metadata
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main_app: omnicapture
+  title:
+    custom: OmniCapture
+  description:
+    en_us: Headless 24/7 Auto-DVR Engine
+  category: Media
+  port_map: "8181"
+  author: Will
