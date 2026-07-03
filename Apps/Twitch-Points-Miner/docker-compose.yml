@@ -1,7 +1,7 @@
 name: twitch-points-miner
 services:
   miner:
-    image: rdavidoff/twitch-channel-points-miner-v2:2.0.5
+    image: rdavidoff/twitch-channel-points-miner-v2:latest
     container_name: twitch-points-miner
     restart: unless-stopped
     ports:
