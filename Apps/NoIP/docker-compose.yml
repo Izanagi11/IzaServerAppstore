@@ -1,0 +1,37 @@
+name: noip-duc
+services:
+  duc:
+    image: ghcr.io/noipcom/noip-duc:latest
+    container_name: noip-duc
+    restart: unless-stopped
+    environment:
+      - NOIP_USERNAME=Your_NoIP_Username
+      - NOIP_PASSWORD=Your_NoIP_Password
+      - NOIP_HOSTNAMES=yourname.ddns.net
+    x-casaos:
+      envs:
+        - container: NOIP_USERNAME
+          description:
+            en_US: Your No-IP account username (or DDNS Key Username)
+        - container: NOIP_PASSWORD
+          description:
+            en_US: Your No-IP account password (or DDNS Key Password)
+        - container: NOIP_HOSTNAMES
+          description:
+            en_US: Your No-IP hostname (e.g., myserver.ddns.net). If using DDNS Keys, use all.ddnskey.com
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+    - arm
+  main: duc
+  author: No-IP
+  category: Utilities
+  title:
+    en_US: No-IP DUC
+  tagline:
+    en_US: Dynamic DNS Update Client
+  description:
+    en_US: "The official No-IP Dynamic Update Client (DUC) v3. This lightweight container runs in the background, continually checking for public IP address changes and automatically syncing them with your No-IP hostname.\n\n⚠️ IMPORTANT: During installation (or by clicking Settings after), you MUST fill out the NOIP_USERNAME, NOIP_PASSWORD, and NOIP_HOSTNAMES environment variables for the container to function properly."
+  icon: https://cdn-icons-png.flaticon.com/512/8255/8255018.png
