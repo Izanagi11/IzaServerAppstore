@@ -1,0 +1,46 @@
+name: imaginative_emily
+services:
+  wizarr:
+    cpu_shares: 90
+    command: []
+    container_name: wizarr
+    deploy:
+      resources:
+        limits:
+          memory: 33582940160
+        reservations:
+          devices: []
+    environment:
+      - DISABLE_BUILTIN_AUTH=false
+      - PGID=1000
+      - PUID=1000
+      - TZ=America/Denver
+    image: ghcr.io/wizarrrr/wizarr:latest
+    labels:
+      icon: https://wizarr.org/img/logo.svg
+    ports:
+      - target: 5690
+        published: "5690"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/Wizarr
+        target: /data
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://wizarr.org/img/logo.svg
+  index: /
+  is_uncontrolled: false
+  port_map: "5690"
+  scheme: http
+  store_app_id: imaginative_emily
+  title:
+    custom: ""
+    en_us: wizarr

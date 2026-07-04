@@ -1,0 +1,66 @@
+name: shelfbridge
+services:
+  shelfbridge:
+    cpu_shares: 90
+    command:
+      - npm
+      - start
+    container_name: shelfbridge
+    deploy:
+      resources:
+        limits:
+          memory: 33582940160
+        reservations:
+          devices: []
+    environment:
+      - NODE_ENV=production
+      - SHELFBRIDGE_USER_0_ABS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlJZCI6IjQzMzExNTNjLWExYTAtNGQ2Mi05MzhjLWFkN2ZjMzA4NGM0YSIsIm5hbWUiOiJTaGVsZkJyaWRnZSIsInR5cGUiOiJhcGkiLCJpYXQiOjE3NzQxMzA2MDZ9.r4-svnEBGQdjJlMDiqSpSzXEHNx3BDA2qKNrA9MyFQ8
+      - SHELFBRIDGE_USER_0_ABS_URL=http://10.0.0.85:8282
+      - SHELFBRIDGE_USER_0_HARDCOVER_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIYXJkY292ZXIiLCJ2ZXJzaW9uIjoiOCIsImp0aSI6ImU1YTBhZjgwLTJmYjUtNGIxMy05ZjBhLTdmZjRmNzA5ZjE5OSIsImFwcGxpY2F0aW9uSWQiOjIsInN1YiI6Ijc0MTgxIiwiYXVkIjoiMSIsImlkIjoiNzQxODEiLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNzc0MTMwNzM2LCJleHAiOjE4MDU2NjY3MzYsImh0dHBzOi8vaGFzdXJhLmlvL2p3dC9jbGFpbXMiOnsieC1oYXN1cmEtYWxsb3dlZC1yb2xlcyI6WyJ1c2VyIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS1yb2xlIjoidXNlciIsIlgtaGFzdXJhLXVzZXItaWQiOiI3NDE4MSJ9LCJ1c2VyIjp7ImlkIjo3NDE4MX19.gHC7PlAcY6YkOHwsWJStyAJEBMBEAU-34TnyznriT8s
+      - SHELFBRIDGE_USER_0_ID=Iza
+    healthcheck:
+      test:
+        - CMD
+        - npm
+        - run
+        - test:native
+      timeout: 10s
+      interval: 30s
+      retries: 3
+      start_period: 10s
+    image: ghcr.io/rohit-purandare/shelfbridge:v1.23.1
+    labels:
+      com.docker.compose.project: shelfbridge
+      com.docker.compose.service: shelfbridge
+      icon: https://icon.casaos.io/main/all/shelfbridge.png
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/shelfbridge/config
+        target: /app/config
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/shelfbridge/data
+        target: /app/data
+    ports: []
+    devices: []
+    cap_add: []
+    networks:
+      - shelfbridge-network
+    privileged: false
+networks:
+  shelfbridge-network:
+    name: shelfbridge_shelfbridge-network
+    driver: bridge
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://icon.casaos.io/main/all/shelfbridge.png
+  index: /
+  is_uncontrolled: false
+  port_map: ""
+  scheme: http
+  store_app_id: shelfbridge
+  title:
+    custom: ""
+    en_us: shelfbridge

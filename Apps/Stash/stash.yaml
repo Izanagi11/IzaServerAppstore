@@ -1,0 +1,70 @@
+name: stash
+services:
+  stash:
+    cpu_shares: 90
+    command: []
+    container_name: stash
+    deploy:
+      resources:
+        limits:
+          memory: 33582936064
+        reservations:
+          devices:
+            - count: all
+              capabilities:
+                - gpu
+    environment:
+      - STASH_CACHE=/cache/
+      - STASH_GENERATED=/generated/
+      - STASH_METADATA=/metadata/
+      - STASH_PORT=9999
+      - STASH_STASH=/data/
+    image: stashapp/stash:latest
+    labels:
+      icon: https://icon.casaos.io/main/all/stash.png
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: 2m
+    ports:
+      - target: 9999
+        published: "9999"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/stash/config
+        target: /root/.stash
+      - type: bind
+        source: /media/WD7200_2/stash
+        target: /data
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/stash/metadata
+        target: /metadata
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/stash/cache
+        target: /cache
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/stash/blobs
+        target: /blobs
+      - type: bind
+        source: /media/ZimaOS-HD/AppData/stash/generated
+        target: /generated
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://icon.casaos.io/main/all/stash.png
+  index: /
+  is_uncontrolled: false
+  port_map: "9999"
+  scheme: http
+  store_app_id: stash
+  title:
+    custom: ""
+    en_us: stash
