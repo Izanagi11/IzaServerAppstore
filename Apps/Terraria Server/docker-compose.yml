@@ -1,53 +1,63 @@
 name: terraria-docker
 services:
   terraria-docker:
-    cpu_shares: 90
-    command: []
+    image: passivelemon/terraria-docker:tmodloader-latest
     container_name: terraria-docker
-    deploy:
-      resources:
-        limits:
-          memory: 33582936064
-        reservations:
-          devices: []
+    restart: unless-stopped
     environment:
       - AUTOCREATE=
-      - DIFFICULTY	=
+      - DIFFICULTY=
       - MAXPLAYERS=8
       - MODPACK=WillModPack
       - MOTD=Zen's Terraria Server
-      - PASSWORD=Zen
+      - PASSWORD=ChangeMeBeforeInstalling
       - PGID=1000
       - PUID=1000
       - SEED=
       - SERVERCONFIG=0
       - WORLDNAME=Docker
-    image: passivelemon/terraria-docker:tmodloader-latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Terraria%20Server/terraria.png
     ports:
       - target: 7777
         published: "7777"
         protocol: tcp
-    restart: unless-stopped
     volumes:
       - type: bind
-        source: /media/Hitachi5600/TerrariaServer
+        source: /DATA/AppData/$AppID/config
         target: /opt/terraria/config
-    devices: []
-    cap_add: []
-    network_mode: bridge
-    privileged: false
+    x-casaos:
+      envs:
+        - container: PASSWORD
+          description:
+            en_US: Server Password (DO NOT LEAVE AS ChangeMeBeforeInstalling)
+        - container: MOTD
+          description:
+            en_US: Message of the Day
+        - container: MODPACK
+          description:
+            en_US: Name of your TModLoader Modpack
+        - container: MAXPLAYERS
+          description:
+            en_US: Maximum number of players
+      ports:
+        - container: "7777"
+          description:
+            en_US: Terraria Game Port
+      volumes:
+        - container: /opt/terraria/config
+          description:
+            en_US: World saves, modpacks, and server config data
+
 x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Terraria%20Server/terraria.png
-  index: /
-  is_uncontrolled: false
-  port_map: "7777"
-  scheme: http
-  store_app_id: terraria-docker
+  architectures:
+    - amd64
+    - arm64
+  main: terraria-docker
+  author: Izanagi11
+  category: Gaming
   title:
-    custom: Terraria Server
-    en_us: terraria-docker
+    en_US: Terraria (TModLoader)
+  tagline:
+    en_US: Modded Terraria Server
+  description:
+    en_US: A containerized Terraria server running TModLoader. Use the settings menu before installing to configure your modpack, world name, and set a secure server password.
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Terraria%20Server/terraria.png
