@@ -16,7 +16,7 @@ services:
       - TZ=America/Denver
     image: iampuid0/neutarr:latest
     labels:
-      icon: https://imgs.search.brave.com/JNLm-j0M8nk1eIOclc6DYCFak1Qe2bS63LmS39sAax4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDQv/NzQ1LzQzNy9zbWFs/bC9pY29uLXN0cnVj/dHVyZS1vZi10aGUt/bnVjbGV1cy1vZi10/aGUtYXRvbS1pbi1j/aXJjbGUtaWNvbi1h/dG9tLXByb3RvbnMt/bmV1dHJvbnMtYW5k/LWVsZWN0cm9ucy1z/eW1ib2wtb2YtbnVj/bGVhci1lbmVyZ3kt/c2NpZW50aWZpYy1y/ZXNlYXJjaC1hbmQt/bW9sZWN1bGFyLWNo/ZW1pc3RyeS1kZXNp/Z24taWxsdXN0cmF0/aW9uLWZyZWUtdmVj/dG9yLmpwZw
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Neutarr/neutarr.png
     ports:
       - target: 9705
         published: "9705"
@@ -34,7 +34,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://imgs.search.brave.com/JNLm-j0M8nk1eIOclc6DYCFak1Qe2bS63LmS39sAax4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDQv/NzQ1LzQzNy9zbWFs/bC9pY29uLXN0cnVj/dHVyZS1vZi10aGUt/bnVjbGV1cy1vZi10/aGUtYXRvbS1pbi1j/aXJjbGUtaWNvbi1h/dG9tLXByb3RvbnMt/bmV1dHJvbnMtYW5k/LWVsZWN0cm9ucy1z/eW1ib2wtb2YtbnVj/bGVhci1lbmVyZ3kt/c2NpZW50aWZpYy1y/ZXNlYXJjaC1hbmQt/bW9sZWN1bGFyLWNo/ZW1pc3RyeS1kZXNp/Z24taWxsdXN0cmF0/aW9uLWZyZWUtdmVj/dG9yLmpwZw
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Neutarr/neutarr.png
   index: /
   is_uncontrolled: false
   port_map: "9705"

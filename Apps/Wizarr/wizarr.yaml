@@ -3,7 +3,7 @@ services:
   wizarr:
     cpu_shares: 90
     command: []
-    container_name: wizarr
+    container_name: Wizarr
     deploy:
       resources:
         limits:
@@ -17,7 +17,7 @@ services:
       - TZ=America/Denver
     image: ghcr.io/wizarrrr/wizarr:latest
     labels:
-      icon: https://wizarr.org/img/logo.svg
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Wizarr/logo.png
     ports:
       - target: 5690
         published: "5690"
@@ -35,7 +35,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://wizarr.org/img/logo.svg
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Wizarr/logo.png
   index: /
   is_uncontrolled: false
   port_map: "5690"
@@ -43,4 +43,4 @@ x-casaos:
   store_app_id: imaginative_emily
   title:
     custom: ""
-    en_us: wizarr
+    en_us: Wizarr

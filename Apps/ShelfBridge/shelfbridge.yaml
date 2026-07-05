@@ -32,7 +32,7 @@ services:
     labels:
       com.docker.compose.project: shelfbridge
       com.docker.compose.service: shelfbridge
-      icon: https://icon.casaos.io/main/all/shelfbridge.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/ShelfBridge/4729112.png
     restart: unless-stopped
     volumes:
       - type: bind
@@ -55,7 +55,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://icon.casaos.io/main/all/shelfbridge.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/ShelfBridge/4729112.png
   index: /
   is_uncontrolled: false
   port_map: ""

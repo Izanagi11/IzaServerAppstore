@@ -24,7 +24,7 @@ services:
       - WORLDNAME=Docker
     image: passivelemon/terraria-docker:tmodloader-latest
     labels:
-      icon: https://icon.casaos.io/main/all/terraria-docker.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Terraria%20Server/terraria.png
     ports:
       - target: 7777
         published: "7777"
@@ -42,7 +42,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://icon.casaos.io/main/all/terraria-docker.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Terraria%20Server/terraria.png
   index: /
   is_uncontrolled: false
   port_map: "7777"

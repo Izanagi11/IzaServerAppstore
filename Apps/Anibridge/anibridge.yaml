@@ -16,7 +16,7 @@ services:
       - UMASK=22
     image: ghcr.io/anibridge/anibridge:latest
     labels:
-      icon: https://icon.casaos.io/main/all/anibridge.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Anibridge/229410720.png
     ports:
       - target: 4848
         published: "4848"
@@ -35,7 +35,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://icon.casaos.io/main/all/anibridge.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Anibridge/229410720.png
   index: /
   is_uncontrolled: false
   port_map: "4848"

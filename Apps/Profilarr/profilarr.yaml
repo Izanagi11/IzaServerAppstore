@@ -14,7 +14,7 @@ services:
       - "5000"
     image: ghcr.io/dictionarry-hub/profilarr-parser:latest
     labels:
-      icon: https://icon.casaos.io/main/all/profilarr.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Profilarr/repeat-icons.png
     restart: unless-stopped
     ports: []
     volumes: []
@@ -48,7 +48,7 @@ services:
       - TZ=America/Denver
     image: ghcr.io/dictionarry-hub/profilarr:latest
     labels:
-      icon: https://icon.casaos.io/main/all/profilarr.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Profilarr/repeat-icons.png
     ports:
       - target: 6868
         published: "6868"

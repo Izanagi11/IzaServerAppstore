@@ -19,7 +19,7 @@ services:
       - TZ=Ameria/Denver
     image: ghcr.io/shokoanime/server:v5.3.3
     labels:
-      icon: https://docs.shokoanime.com/images/logo.svg
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/8cf6c74c2b2ca8d90f83ddd5293ccf5b830608bb/Apps/Shoko/logo.svg
     ports:
       - target: 8111
         published: "8111"
@@ -41,7 +41,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://docs.shokoanime.com/images/logo.svg
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/8cf6c74c2b2ca8d90f83ddd5293ccf5b830608bb/Apps/Shoko/logo.svg
   index: /
   is_uncontrolled: false
   port_map: "8111"

@@ -21,7 +21,7 @@ services:
       - STASH_STASH=/data/
     image: stashapp/stash:latest
     labels:
-      icon: https://icon.casaos.io/main/all/stash.png
+      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Stash/logo.png
     logging:
       driver: json-file
       options:
@@ -59,7 +59,7 @@ x-casaos:
   author: self
   category: self
   hostname: ""
-  icon: https://icon.casaos.io/main/all/stash.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Stash/logo.png
   index: /
   is_uncontrolled: false
   port_map: "9999"
