@@ -1,60 +1,63 @@
 name: kamiyomu
 services:
   kamiyomu:
-    cpu_shares: 90
-    command: []
-    deploy:
-      resources:
-        limits:
-          memory: 33582923776
-        reservations:
-          devices: []
+    image: marcoscostadev/kamiyomu:1.1.1
+    container_name: kamiyomu
+    restart: unless-stopped
+    user: 0:0
     healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:8080/healthz
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
       timeout: 10s
       interval: 30s
-    image: marcoscostadev/kamiyomu:1.1.1
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Kamiyomu/229410720.png
     ports:
       - target: 8080
         published: "8086"
         protocol: tcp
-    restart: unless-stopped
-    user: 0:0
     volumes:
       - type: bind
-        source: /media/Media/Iza's Manga
+        source: /DATA/AppData/$AppID/manga
         target: /manga
       - type: bind
-        source: /media/ZimaOS-HD/AppData/KamiYomu/db
+        source: /DATA/AppData/$AppID/db
         target: /db
       - type: bind
-        source: /media/ZimaOS-HD/AppData/KamiYomu/logs
+        source: /DATA/AppData/$AppID/logs
         target: /logs
       - type: bind
-        source: /media/ZimaOS-HD/AppData/KamiYomu/agents
+        source: /DATA/AppData/$AppID/agents
         target: /agents
-    devices: []
-    cap_add: []
-    environment: []
-    network_mode: bridge
-    privileged: false
-    container_name: ""
+    x-casaos:
+      ports:
+        - container: "8080"
+          description:
+            en_US: WebUI Port
+      volumes:
+        - container: /manga
+          description:
+            en_US: Manga media directory
+        - container: /db
+          description:
+            en_US: Database storage
+        - container: /logs
+          description:
+            en_US: Application logs
+        - container: /agents
+          description:
+            en_US: Scanner agents
+
 x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Kamiyomu/229410720.png
-  index: /
-  is_uncontrolled: false
-  port_map: "8086"
-  scheme: http
-  store_app_id: kamiyomu
+  architectures:
+    - amd64
+    - arm64
+  main: kamiyomu
+  author: Izanagi11
+  category: Media
   title:
-    custom: ""
-    en_us: kamiyomu
+    en_US: KamiYomu
+  tagline:
+    en_US: Web-based manga reader
+  description:
+    en_US: KamiYomu is a lightweight, self-hosted manga reading server designed to organize and serve your personal manga archives to your browser.
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Kamiyomu/229410720.png
+  port_map: "8086"
+  index: /

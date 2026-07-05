@@ -1,45 +1,48 @@
 name: neutarr
 services:
   neutarr:
-    cpu_shares: 90
-    command: []
+    image: iampuid0/neutarr:latest
     container_name: neutarr
-    deploy:
-      resources:
-        limits:
-          memory: 33582940160
-        reservations:
-          devices: []
+    restart: unless-stopped
     environment:
       - PGID=1000
       - PUID=1000
       - TZ=America/Denver
-    image: iampuid0/neutarr:latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Neutarr/neutarr.png
     ports:
       - target: 9705
         published: "9705"
         protocol: tcp
-    restart: unless-stopped
     volumes:
       - type: bind
-        source: /DATA/AppData/neutarr
+        source: /DATA/AppData/$AppID/config
         target: /config
-    devices: []
-    cap_add: []
-    network_mode: bridge
-    privileged: false
+    x-casaos:
+      envs:
+        - container: TZ
+          description:
+            en_US: Timezone configuration
+      ports:
+        - container: "9705"
+          description:
+            en_US: WebUI Port
+      volumes:
+        - container: /config
+          description:
+            en_US: Neutarr configuration data
+
 x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Neutarr/neutarr.png
-  index: /
-  is_uncontrolled: false
-  port_map: "9705"
-  scheme: http
-  store_app_id: neutarr
+  architectures:
+    - amd64
+    - arm64
+  main: neutarr
+  author: Izanagi11
+  category: Automation
   title:
-    custom: neutarr
-    en_us: neutarr
+    en_US: Neutarr
+  tagline:
+    en_US: Automated missing media hunter for *Arr
+  description:
+    en_US: Neutarr is an automated missing media hunter and quality upgrader for your *Arr stack (Sonarr, Radarr, Lidarr, etc.). It routinely scans your libraries and triggers searches for unmet cutoffs or missing episodes to ensure you always have the best quality releases.
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Neutarr/neutarr.png
+  port_map: "9705"
+  index: /

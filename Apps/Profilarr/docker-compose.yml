@@ -1,77 +1,60 @@
 name: profilarr
 services:
   parser:
-    cpu_shares: 90
-    command: []
+    image: ghcr.io/dictionarry-hub/profilarr-parser:latest
     container_name: profilarr-parser
-    deploy:
-      resources:
-        limits:
-          memory: 50443632640
-        reservations:
-          devices: []
+    restart: unless-stopped
     expose:
       - "5000"
-    image: ghcr.io/dictionarry-hub/profilarr-parser:latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Profilarr/repeat-icons.png
-    restart: unless-stopped
-    ports: []
-    volumes: []
-    devices: []
-    cap_add: []
-    environment: []
-    network_mode: bridge
-    privileged: false
+
   profilarr:
-    cpu_shares: 90
-    command: []
+    image: ghcr.io/dictionarry-hub/profilarr:latest
     container_name: profilarr
+    restart: unless-stopped
     depends_on:
       parser:
-        condition: service_healthy
-        required: true
-    deploy:
-      resources:
-        limits:
-          memory: 50443632640
-        reservations:
-          devices:
-            - count: all
-              capabilities:
-                - gpu
+        condition: service_started
     environment:
       - PARSER_HOST=parser
       - PARSER_PORT=5000
       - PGID=1000
       - PUID=1000
       - TZ=America/Denver
-    image: ghcr.io/dictionarry-hub/profilarr:latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Profilarr/repeat-icons.png
     ports:
       - target: 6868
         published: "6868"
         protocol: tcp
-    restart: unless-stopped
     volumes:
       - type: bind
-        source: /media/ZimaOS-HD/AppData/profilarr
+        source: /DATA/AppData/$AppID/config
         target: /config
-    devices: []
-    cap_add: []
-    network_mode: bridge
-    privileged: false
+    x-casaos:
+      envs:
+        - container: TZ
+          description:
+            en_US: Timezone configuration
+      ports:
+        - container: "6868"
+          description:
+            en_US: WebUI Port
+      volumes:
+        - container: /config
+          description:
+            en_US: Profilarr configuration data
+
 x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://icon.casaos.io/main/all/profilarr.png
-  index: /
-  is_uncontrolled: false
-  port_map: "6868"
-  scheme: http
-  store_app_id: profilarr
+  architectures:
+    - amd64
+    - arm64
+  main: profilarr
+  author: Izanagi11
+  category: Automation
   title:
-    custom: ""
-    en_us: profilarr
+    en_US: Profilarr
+  tagline:
+    en_US: Radarr and Sonarr Profile Sync
+  description:
+    en_US: Profilarr is a companion app for the *Arr suite. It provides a centralized way to easily manage and synchronize custom profiles, release profiles, and quality settings across your Radarr and Sonarr instances.
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Profilarr/repeat-icons.png
+  port_map: "6868"
+  index: /
