@@ -1,46 +1,50 @@
-name: imaginative_emily
+name: wizarr
 services:
   wizarr:
-    cpu_shares: 90
-    command: []
-    container_name: Wizarr
-    deploy:
-      resources:
-        limits:
-          memory: 33582940160
-        reservations:
-          devices: []
+    image: ghcr.io/wizarrrr/wizarr:latest
+    container_name: wizarr
+    restart: unless-stopped
     environment:
       - DISABLE_BUILTIN_AUTH=false
       - PGID=1000
       - PUID=1000
       - TZ=America/Denver
-    image: ghcr.io/wizarrrr/wizarr:latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Wizarr/logo.png
     ports:
       - target: 5690
         published: "5690"
         protocol: tcp
-    restart: unless-stopped
     volumes:
       - type: bind
-        source: /media/ZimaOS-HD/AppData/Wizarr
+        source: /DATA/AppData/$AppID
         target: /data
-    devices: []
-    cap_add: []
-    network_mode: bridge
-    privileged: false
+    x-casaos:
+      envs:
+        - container: TZ
+          description:
+            en_US: Timezone configuration
+      ports:
+        - container: "5690"
+          description:
+            en_US: WebUI Port
+      volumes:
+        - container: /data
+          description:
+            en_US: Wizarr application data
+
 x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Wizarr/logo.png
-  index: /
-  is_uncontrolled: false
-  port_map: "5690"
-  scheme: http
-  store_app_id: imaginative_emily
+  architectures:
+    - amd64
+    - arm64
+    - arm
+  main: wizarr
+  author: Izanagi11
+  category: Media
   title:
-    custom: ""
-    en_us: Wizarr
+    en_US: Wizarr
+  tagline:
+    en_US: Advanced user invitation system for media servers
+  description:
+    en_US: Wizarr is a tool that allows you to create unique, expiring links to share with your friends and family, allowing them to easily join your Plex, Jellyfin, or Emby server automatically.
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Wizarr/logo.png
+  port_map: "5690"
+  index: /
