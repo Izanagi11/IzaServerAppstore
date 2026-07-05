@@ -43,6 +43,6 @@ x-casaos:
     en_US: P2P BitTorrent client routed through VPN
   description:
     en_US: "The hotio qBittorrent client, heavily optimized for home media servers.\n\n⚠️ IMPORTANT VPN DEPENDENCY: This app is hardcoded with 'network_mode: container:gluetun'. It WILL crash on startup if you do not already have a container named exactly 'gluetun' running on your system. Additionally, because the network is shared, you must expose WebUI port 8080 on the Gluetun container, not here."
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/qBittorrent-Gluetun/decq8nc-191acbf9-be62-40a0-8f06-ad5005902e1b.png
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/qBittorrent-Gluetun/icon.png
   port_map: "8080"
   index: /
