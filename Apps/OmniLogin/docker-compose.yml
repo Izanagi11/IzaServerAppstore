@@ -1,3 +1,4 @@
+name: OmniLogin
 services:
   omni-login:
     image: lscr.io/linuxserver/chromium:latest

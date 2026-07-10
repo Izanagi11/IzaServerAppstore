@@ -1,3 +1,4 @@
+name: OmniCapture
 services:
   omnicapture:
     image: ghcr.io/izanagi11/omnicapture-server:latest
