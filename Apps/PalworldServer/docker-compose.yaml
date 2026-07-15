@@ -1,0 +1,70 @@
+name: palworld-server
+services:
+  palworld:
+    image: thijsvanloef/palworld-server-docker:latest
+    container_name: palworld-server
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Denver
+      - SERVER_NAME=Zens Palworld Server
+      - SERVER_PASSWORD=
+      - ADMIN_PASSWORD=ChangeMeNow
+      - PLAYERS=8
+      - MULTITHREADING=true
+      - RCON_ENABLED=true
+      - RCON_PORT=25575
+      - UPDATE_ON_BOOT=true
+      - BACKUP_ENABLED=true
+      - BACKUP_CRON_EXPRESSION=0 * * * *
+    ports:
+      - target: 8211
+        published: "8211"
+        protocol: udp
+      - target: 25575
+        published: "25575"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/$AppID/data
+        target: /palworld
+    x-casaos:
+      envs:
+        - container: SERVER_NAME
+          description:
+            en_US: The name of your server in the server browser
+        - container: SERVER_PASSWORD
+          description:
+            en_US: Game password (leave blank for no password)
+        - container: ADMIN_PASSWORD
+          description:
+            en_US: Admin/RCON password for in-game commands
+        - container: PLAYERS
+          description:
+            en_US: Maximum number of concurrent players
+      ports:
+        - container: "8211"
+          description:
+            en_US: Palworld Game Port (UDP)
+        - container: "25575"
+          description:
+            en_US: RCON Management Port (TCP)
+      volumes:
+        - container: /palworld
+          description:
+            en_US: Game saves, backups, and server data
+
+x-casaos:
+  architectures:
+    - amd64
+  main: palworld
+  author: thijsvanloef
+  category: Gaming
+  title:
+    en_US: Palworld Server (Advanced)
+  tagline:
+    en_US: Feature-rich dedicated server wrapper
+  description:
+    en_US: "The community-favorite Palworld dedicated server wrapper. Unlike the raw official image, this container automatically updates the game on boot, runs hourly automatic backups, and allows you to completely configure the server directly from the ZimaOS Settings menu without touching a single .ini file."
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/Palworld/palworld.png
