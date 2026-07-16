@@ -1,29 +1,9 @@
 name: palworld-server-tool
 services:
-  # The automated setup script to safely create the database files
-  pst-setup:
-    image: alpine:latest
-    container_name: pst-setup
-    restart: "no"
-    volumes:
-      - type: bind
-        source: /DATA/AppData/$AppID/config
-        target: /config
-    command:
-      - sh
-      - -c
-      - |
-        touch /config/pst.db
-        touch /config/config.db
-
-  # The actual Palworld Server Tool
   pst:
     image: jokerwho/palworld-server-tool:latest
     container_name: palworld-server-tool
     restart: unless-stopped
-    depends_on:
-      pst-setup:
-        condition: service_completed_successfully
     environment:
       - TZ=America/Denver
     ports:
@@ -37,7 +17,6 @@ services:
       - type: bind
         source: /DATA/AppData/$AppID/config/config.db
         target: /app/config.db
-      # This links PST directly to your game server's save folder
       - type: bind
         source: /DATA/AppData/palworld-server/palworld/Pal/Saved
         target: /game
