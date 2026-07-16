@@ -1,15 +1,10 @@
 name: palworld-server
 services:
   palworld:
-    cpu_shares: 90
-    command: []
+    image: thijsvanloef/palworld-server-docker:latest
     container_name: palworld-server
-    deploy:
-      resources:
-        limits:
-          memory: 50443988992
-        reservations:
-          devices: []
+    restart: unless-stopped
+    stop_grace_period: 30s
     environment:
       - ADMIN_PASSWORD=changeme
       - AUTO_UPDATE_ENABLED=true
@@ -33,9 +28,6 @@ services:
       - SERVER_PASSWORD=Zen Division
       - TZ=America/Denver
       - UPDATE_ON_BOOT=true
-    image: thijsvanloef/palworld-server-docker:latest
-    labels:
-      icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/PalworldServer/logo.jpg
     ports:
       - target: 8211
         published: "8211"
@@ -49,8 +41,6 @@ services:
       - target: 27575
         published: "27575"
         protocol: tcp
-    restart: unless-stopped
-    stop_grace_period: 30s
     volumes:
       - type: bind
         source: /DATA/AppData/palworld-server/palworld
@@ -58,28 +48,17 @@ services:
       - type: bind
         source: /media/Hitachi5600/PalworldBackups
         target: /palworld/backups/
-    devices: []
-    cap_add: []
-    networks:
-      - default
-    privileged: false
-networks:
-  default:
-    name: palworld-server_default
+
 x-casaos:
   architectures:
     - amd64
+  main: palworld
   author: thijsvanloef
   category: Gaming
-  description:
-    en_US: "The community-favorite Palworld dedicated server wrapper. Automatically updates the game on boot and allows you to configure the server directly from the ZimaOS Settings menu."
-  hostname: ""
-  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/PalworldServer/logo.jpg
-  is_uncontrolled: false
-  main: palworld
-  store_app_id: palworld-server
+  title:
+    en_US: Palworld Server
   tagline:
     en_US: Feature-rich dedicated server wrapper
-  title:
-    custom: ""
-    en_US: Palworld Server
+  description:
+    en_US: "The community-favorite Palworld dedicated server wrapper. Automatically updates the game on boot and allows you to configure the server directly from the ZimaOS Settings menu."
+  icon: https://raw.githubusercontent.com/Izanagi11/IzaServerAppstore/refs/heads/main/Apps/PalworldServer/logo.jpg
