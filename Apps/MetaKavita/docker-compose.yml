@@ -1,0 +1,38 @@
+name: metakavita
+services:
+  metakavita:
+    image: ghcr.io/raukorim-bot/metakavita:latest
+    container_name: metakavita
+    environment:
+      - ADMIN_PASSWORD=changeme
+    ports:
+      - target: 5010
+        published: "5010"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/metakavita/data
+        target: /app/data
+    restart: unless-stopped
+    networks:
+      - default
+
+networks:
+  default:
+    name: metakavita_default
+
+x-casaos:
+  architectures:
+    - amd64
+  author: raukorim-bot
+  category: Media
+  description:
+    en_US: "MetaKavita is a metadata companion built to scrape and enrich metadata for Kavita."
+  main: metakavita
+  port_map: "5010"
+  scheme: http
+  store_app_id: metakavita
+  tagline:
+    en_US: Metadata enricher for Kavita
+  title:
+    en_US: MetaKavita
