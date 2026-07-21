@@ -13,6 +13,9 @@ services:
       - type: bind
         source: /DATA/AppData/metakavita/data
         target: /app/data
+    extra_hosts:
+      - "translate.google.com:127.0.0.1"
+      - "translate.googleapis.com:127.0.0.1"
     restart: unless-stopped
     networks:
       - default
